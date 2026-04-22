@@ -3,24 +3,33 @@
 {% block title %}Mock Razorpay Gateway | Parivarthan NGO{% endblock %}
 
 {% block content %}
-    <div style="max-width: 500px; margin: 4rem auto; background: white; padding: 3rem; border-radius: 12px; border-top: 5px solid #3498db; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); text-align: center;">
-        
-        <h2 style="color: #2c3e50; margin-bottom: 1rem;">MOCK PAYMENT GATEWAY</h2>
-        <p style="color: #7f8c8d; margin-bottom: 2rem;">In production, this page would be the actual Razorpay Checkout window.</p>
-        
-        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; text-align: left;">
-            <p><strong>Payment ID:</strong> {{ donation.payment_id }}</p>
-            <p><strong>Donor:</strong> {{ donation.donor_name }}</p>
-            <h3 style="margin-top: 1rem; color: #2ecc71;">Amount to Pay: ₹{{ donation.amount }}</h3>
-        </div>
+    <div class="container section-padding">
+        <div style="max-width: 500px; margin: 0 auto; background: var(--card-bg); padding: 3rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); text-align: center; border-top: 6px solid var(--primary);">
+            
+            <div style="display: inline-block; background: rgba(44, 62, 80, 0.05); padding: 1rem; border-radius: 50%; margin-bottom: 1.5rem;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </div>
 
-        <form method="POST">
-            {% csrf_token %}
-            <button type="submit" style="width: 100%; background: #3498db; color: white; border: none; padding: 1rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer;">
-                Simulate Successful Payment
-            </button>
-        </form>
-        
-        <a href="{% url 'initiate-donation' %}" style="display: block; margin-top: 1rem; color: #95a5a6; text-decoration: none;">Cancel Payment</a>
+            <h2 style="color: var(--secondary); margin-bottom: 0.5rem; font-size: 1.8rem;">Secure Checkout</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">(Simulation Mode: This represents the final Razorpay Modal popup)</p>
+            
+            <div style="background: var(--bg-main); padding: 1.5rem; border-radius: var(--radius-sm); margin-bottom: 2rem; text-align: left; border: 1px solid rgba(0,0,0,0.05);">
+                <p style="margin-bottom: 0.5rem; color: var(--text-muted);"><strong>Order ID:</strong> #{{ donation.payment_id }}</p>
+                <p style="margin-bottom: 0.5rem; color: var(--text-muted);"><strong>Name:</strong> {{ donation.donor_name }}</p>
+                <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px dashed #ddd; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-weight: 600; color: var(--secondary);">Total Payable</span>
+                    <span style="font-size: 1.5rem; font-weight: 800; color: var(--primary);">₹{{ donation.amount }}</span>
+                </div>
+            </div>
+
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn-primary" style="width: 100%; border-radius: var(--radius-sm); padding: 1rem; font-size: 1.1rem; display: flex; justify-content: center; align-items: center; gap: 0.5rem;">
+                    Pay ₹{{ donation.amount }} via Razorpay
+                </button>
+            </form>
+            
+            <a href="{% url 'initiate-donation' %}" style="display: inline-block; margin-top: 1.5rem; color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: color 0.3s ease;">Cancel Transaction</a>
+        </div>
     </div>
 {% endblock %}

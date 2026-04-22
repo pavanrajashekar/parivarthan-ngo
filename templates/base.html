@@ -7,8 +7,8 @@
     <meta name="description" content="Parivarthan Foundation - Empowering Communities">
     <title>{% block title %}Parivarthan NGO{% endblock %}</title>
     
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Inter & Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -16,12 +16,15 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="/" class="nav-brand">Parivarthan.</a>
+        <a href="/" class="nav-brand">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"></path></svg>
+            Parivarthan.
+        </a>
         <div class="nav-links">
             <a href="{% url 'blog-home' %}">Home</a>
             <a href="{% url 'programs-list' %}">Programs</a>
-            <a href="{% url 'initiate-donation' %}">Donate</a>
             <a href="{% url 'contact' %}">Contact</a>
+            <a href="{% url 'initiate-donation' %}" class="btn-primary">Donate Now</a>
         </div>
     </nav>
 

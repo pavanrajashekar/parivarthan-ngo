@@ -3,18 +3,58 @@
 {% block title %}Home | Parivarthan NGO{% endblock %}
 
 {% block content %}
-    <div style="margin-bottom: 2rem;">
-        <h1 style="font-size: 2.5rem;">Latest Initiatives</h1>
-        <p style="color: #7f8c8d; font-size: 1.1rem;">See what we've been up to recently.</p>
-    </div>
+    <!-- Hero Section -->
+    <section style="background: linear-gradient(135deg, var(--secondary) 0%, #1a252f 100%); color: white; border-radius: var(--radius-lg); padding: 6rem 3rem; text-align: center; margin-bottom: 4rem; position: relative; overflow: hidden; box-shadow: var(--shadow-lg);">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.1; background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center; pointer-events: none;"></div>
+        
+        <div style="position: relative; z-index: 1; max-width: 800px; margin: 0 auto;">
+            <h1 style="color: white; margin-bottom: 1.5rem;">Empowering Communities, Changing Lives.</h1>
+            <p style="font-size: 1.3rem; color: rgba(255,255,255,0.8); margin-bottom: 3rem;">Join Parivarthan Foundation in our mission to provide education, healthcare, and sustainable development to those who need it most.</p>
+            
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="{% url 'initiate-donation' %}" class="btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem;">Make an Impact</a>
+                <a href="{% url 'programs-list' %}" class="btn-primary" style="background: rgba(255,255,255,0.1); color: white!important; border: 1px solid rgba(255,255,255,0.2); box-shadow: none;">Our Programs</a>
+            </div>
+        </div>
+    </section>
 
-    {% for post in posts %}
-        <article class="card">
-            <h2 class="card-title">{{ post.title }}</h2>
-            <div class="card-meta">Posted on {{ post.date_posted|date:"F d, Y" }}</div>
-            <p class="card-text">{{ post.content }}</p>
-        </article>
-    {% empty %}
-        <p style="text-align: center; color: #7f8c8d; padding: 3rem;">No posts yet. Check back soon!</p>
-    {% endfor %}
+    <!-- Impact Board -->
+    <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 5rem; text-align: center;">
+        <div style="background: white; padding: 2rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+            <h2 style="color: var(--primary); font-size: 3rem; margin-bottom: 0.5rem;">5K+</h2>
+            <p style="font-weight: 600; color: var(--secondary);">Children Educated</p>
+        </div>
+        <div style="background: white; padding: 2rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+            <h2 style="color: var(--primary); font-size: 3rem; margin-bottom: 0.5rem;">20+</h2>
+            <p style="font-weight: 600; color: var(--secondary);">Active Programs</p>
+        </div>
+        <div style="background: white; padding: 2rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+            <h2 style="color: var(--primary); font-size: 3rem; margin-bottom: 0.5rem;">15</h2>
+            <p style="font-weight: 600; color: var(--secondary);">Cities Reached</p>
+        </div>
+    </section>
+
+    <!-- Latest News (Grid System) -->
+    <section>
+        <div style="margin-bottom: 2rem; text-align: center;">
+            <h2>Stories of Change</h2>
+            <p>Latest updates and articles from the ground.</p>
+        </div>
+
+        <div class="card-grid">
+            {% for post in posts %}
+                <article class="card">
+                    <div style="background: #ecf0f1; height: 180px; margin: -2rem -2rem 1.5rem -2rem; display: flex; align-items: center; justify-content: center; color: #bdc3c7;">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                    </div>
+                    
+                    <div class="card-meta">{{ post.date_posted|date:"F d, Y" }}</div>
+                    <h3 class="card-title">{{ post.title }}</h3>
+                    <p class="card-text">{{ post.content }}</p>
+                </article>
+            {% empty %}
+                <p style="grid-column: 1 / -1; text-align: center; color: #7f8c8d; padding: 3rem;">No posts yet. We are writing our next story!</p>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}

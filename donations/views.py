@@ -15,9 +15,14 @@ def initiate_donation(request):
             donation.save()
             return redirect('mock-gateway', donation_id=donation.id)
     else:
-        form = DonationForm()
+        initial_data = {}
+        if request.GET.get('amount'):
+            initial_data['amount'] = request.GET.get('amount')
+        form = DonationForm(initial=initial_data)
     
-    return render(request, 'donations/donate.html', {'form': form})
+    from .models import SponsorshipPlan
+    plans = SponsorshipPlan.objects.all()
+    return render(request, 'donations/donate.html', {'form': form, 'plans': plans})
 
 def mock_gateway(request, donation_id):
     donation = get_object_or_404(Donation, id=donation_id)

@@ -8,7 +8,8 @@ def contact(request):
         if form.is_valid():
             form.save() # Saves to DB immediately because it's a ModelForm
             messages.success(request, f"Thank you! Your message has been sent.")
-            return redirect('contact')
+            # Redirect to home page at the contact anchor
+            return redirect('/#contact')
     else:
         form = ContactForm()
 

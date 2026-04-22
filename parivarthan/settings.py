@@ -136,6 +136,7 @@ JAZZMIN_SETTINGS = {
     "copyright": "Parivarthan Foundation",
     "search_model": ["donations.Donation", "blog.Blog"],
     "show_ui_builder": False,
+    "custom_css": "css/admin_custom.css",
     "topmenu_links": [
         {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
         {"name": "Live Site", "url": "/", "new_window": True},
@@ -143,8 +144,8 @@ JAZZMIN_SETTINGS = {
 }
 
 JAZZMIN_UI_TWEAKS = {
-    "navbar": "navbar-white navbar-light",
-    "theme": "lumen",
+    "navbar": "navbar-dark",
+    "theme": "darkly",
     "sidebar": "sidebar-dark-primary",
     "sidebar_nav_child_indent": True,
     "accent": "accent-primary",

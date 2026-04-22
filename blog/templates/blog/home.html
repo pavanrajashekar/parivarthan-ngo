@@ -35,7 +35,7 @@
     </section>
 
     <!-- Latest News (Grid System) -->
-    <section>
+    <section style="margin-bottom: 5rem;">
         <div style="margin-bottom: 2rem; text-align: center;">
             <h2>Stories of Change</h2>
             <p>Latest updates and articles from the ground.</p>
@@ -55,6 +55,37 @@
             {% empty %}
                 <p style="grid-column: 1 / -1; text-align: center; color: #7f8c8d; padding: 3rem;">No posts yet. We are writing our next story!</p>
             {% endfor %}
+        </div>
+    </section>
+
+    <!-- Trust Signals: Testimonials -->
+    <section style="background: var(--card-bg); padding: 4rem; border-radius: var(--radius-lg); text-align: center; margin-bottom: 5rem; box-shadow: var(--shadow-md);">
+        <h2 style="margin-bottom: 3rem;">What People Say</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+            <div style="text-align: left;">
+                <p style="font-size: 1.1rem; font-style: italic; color: var(--secondary); margin-bottom: 1rem;">"Thanks to the Orphan Care Kit, my daughter now has all the supplies she needs for the school year. We are forever grateful."</p>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--primary);"></div>
+                    <strong style="color: var(--secondary);">Sunita M.</strong>
+                </div>
+            </div>
+            <div style="text-align: left;">
+                <p style="font-size: 1.1rem; font-style: italic; color: var(--secondary); margin-bottom: 1rem;">"Sponsoring a lunch meal through Parivarthan was the best birthday gift I ever gave myself. The transparency is amazing."</p>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent);"></div>
+                    <strong style="color: var(--secondary);">Rahul K.</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners / Associated -->
+    <section style="text-align: center; opacity: 0.6; padding-bottom: 2rem;">
+        <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; font-weight: 700; margin-bottom: 1.5rem;">Associated With</p>
+        <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;">
+            <strong style="font-size: 1.2rem;">Microsoft Philanthropies</strong>
+            <strong style="font-size: 1.2rem;">Google.org</strong>
+            <strong style="font-size: 1.2rem;">Rotary International</strong>
         </div>
     </section>
 {% endblock %}

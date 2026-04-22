@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us | Parivarthan NGO{% endblock %}
+
+{% block content %}
+    <div style="max-width: 600px; margin: 0 auto; background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);">
+        <h1 style="font-size: 2.2rem; color: #2c3e50; text-align: center; margin-bottom: 0.5rem;">Get in Touch</h1>
+        <p style="text-align: center; color: #7f8c8d; margin-bottom: 2rem;">We would love to hear from you. Drop us a message below.</p>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div style="background-color: #d4edda; color: #155724; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid #c3e6cb;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #34495e;">Name</label>
+                {{ form.name }}
+            </div>
+            
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #34495e;">Email Address</label>
+                {{ form.email }}
+            </div>
+            
+            <div style="margin-bottom: 2rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #34495e;">Message</label>
+                {{ form.message }}
+            </div>
+
+            <button type="submit" style="width: 100%; background: #e74c3c; color: white; border: none; padding: 1rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: background 0.3s ease;">
+                Send Message
+            </button>
+        </form>
+    </div>
+    
+    <!-- Quick inline style strictly targeting form inputs outputted by django -->
+    <style>
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: #e74c3c;
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+        }
+    </style>
+{% endblock %}

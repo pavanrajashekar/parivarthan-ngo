@@ -3,57 +3,77 @@
 {% block title %}Contact Us | Parivarthan NGO{% endblock %}
 
 {% block content %}
-    <div style="max-width: 600px; margin: 0 auto; background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);">
-        <h1 style="font-size: 2.2rem; color: #2c3e50; text-align: center; margin-bottom: 0.5rem;">Get in Touch</h1>
-        <p style="text-align: center; color: #7f8c8d; margin-bottom: 2rem;">We would love to hear from you. Drop us a message below.</p>
+    <div class="container section-padding">
         
-        {% if messages %}
-            {% for message in messages %}
-                <div style="background-color: #d4edda; color: #155724; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid #c3e6cb;">
-                    {{ message }}
+        <div style="text-align: center; max-width: 600px; margin: 0 auto 3rem auto;">
+            <p style="color: var(--primary); font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">Get in Touch</p>
+            <h1 style="margin-bottom: 1rem;">We'd Love to Hear From You</h1>
+            <p>Whether you're looking to volunteer, partner, or just discover more about our initiatives across Bangalore, our inbox is open.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 3rem; background: var(--card-bg); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: 3rem; max-width: 800px; margin: 0 auto;">
+            
+            {% if messages %}
+                <div style="grid-column: 1 / -1;">
+                    {% for message in messages %}
+                        <div style="background-color: #d4edda; color: #155724; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid #c3e6cb;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 0.5rem;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
-        {% endif %}
+            {% endif %}
 
-        <form method="POST">
-            {% csrf_token %}
-            
-            <div style="margin-bottom: 1.5rem;">
-                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #34495e;">Name</label>
-                {{ form.name }}
-            </div>
-            
-            <div style="margin-bottom: 1.5rem;">
-                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #34495e;">Email Address</label>
-                {{ form.email }}
-            </div>
-            
-            <div style="margin-bottom: 2rem;">
-                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #34495e;">Message</label>
-                {{ form.message }}
-            </div>
+            <form method="POST" style="display: grid; gap: 1.5rem;">
+                {% csrf_token %}
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--secondary); font-size: 0.95rem;">Full Name</label>
+                        {{ form.name }}
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--secondary); font-size: 0.95rem;">Email Address</label>
+                        {{ form.email }}
+                    </div>
+                </div>
+                
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--secondary); font-size: 0.95rem;">Message</label>
+                    {{ form.message }}
+                </div>
 
-            <button type="submit" style="width: 100%; background: #e74c3c; color: white; border: none; padding: 1rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: background 0.3s ease;">
-                Send Message
-            </button>
-        </form>
+                <div style="text-align: right; margin-top: 1rem;">
+                    <button type="submit" class="btn-primary" style="padding: 1rem 3rem; border-radius: var(--radius-sm);">
+                        Send Message
+                    </button>
+                </div>
+            </form>
+            
+        </div>
     </div>
     
-    <!-- Quick inline style strictly targeting form inputs outputted by django -->
+    <!-- Quick Inline Styling -->
     <style>
         .form-control {
             width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            padding: 1rem 1rem;
+            border: 2px solid transparent;
+            background: #F4F7F6;
+            border-radius: var(--radius-sm);
             font-size: 1rem;
-            transition: border-color 0.3s ease;
             font-family: inherit;
+            transition: all 0.3s ease;
         }
-        .form-control:focus {
-            outline: none;
-            border-color: #e74c3c;
-            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+        .form-control:focus { 
+            outline: none; 
+            border-color: var(--primary); 
+            background: white;
+            box-shadow: 0 0 0 4px rgba(255, 87, 34, 0.1);
+        }
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
         }
     </style>
 {% endblock %}

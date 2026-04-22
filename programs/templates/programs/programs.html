@@ -1,25 +1,50 @@
 {% extends "base.html" %}
 
-{% block title %}Programs | Parivarthan NGO{% endblock %}
+{% block title %}Our Programs | Parivarthan NGO{% endblock %}
 
 {% block content %}
-    <div style="margin-bottom: 2rem;">
-        <h1 style="font-size: 2.5rem; color: #34495e;">Our Programs</h1>
-        <p style="color: #7f8c8d; font-size: 1.1rem;">Discover how we are bringing change to our community.</p>
-    </div>
+    <div class="container section-padding">
+        
+        <div style="text-align: center; max-width: 600px; margin: 0 auto 4rem auto;">
+            <p style="color: var(--primary); font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">Our Initiatives</p>
+            <h1 style="margin-bottom: 1rem;">Driving Real Change</h1>
+            <p>From primary education to local healthcare drives, explore the various programs we operate year-round to support our local communities.</p>
+        </div>
 
-    {% for program in programs %}
-        <article class="card" style="border-left: 4px solid #3498db;">
-            <h2 class="card-title" style="color: #2980b9;">{{ program.name }}</h2>
-            <div class="card-meta">
-                <strong>Location:</strong> {{ program.location }} 
-                {% if program.start_date %}
-                    | <strong>Starts:</strong> {{ program.start_date|date:"F d, Y" }}
-                {% endif %}
-            </div>
-            <p class="card-text">{{ program.description }}</p>
-        </article>
-    {% empty %}
-        <p style="text-align: center; color: #7f8c8d; padding: 3rem;">We are currently planning new programs. Please check back later.</p>
-    {% endfor %}
+        <div class="card-grid">
+            {% for program in programs %}
+                <article class="card" style="padding: 0;">
+                    <!-- Placeholder Image -->
+                    <div style="background-image: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center; height: 220px; width: 100%;"></div>
+                    
+                    <div style="padding: 2rem;">
+                        <h3 class="card-title">{{ program.name }}</h3>
+                        
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                            <span style="background: rgba(44, 62, 80, 0.05); color: var(--secondary); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">
+                                📍 {{ program.location }}
+                            </span>
+                            {% if program.start_date %}
+                                <span style="background: rgba(39, 174, 96, 0.05); color: var(--accent); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">
+                                    🗓️ {{ program.start_date|date:"F Y" }}
+                                </span>
+                            {% endif %}
+                        </div>
+
+                        <p class="card-text">{{ program.description }}</p>
+                        
+                        <a href="{% url 'contact' %}" style="display: inline-block; margin-top: 1.5rem; color: var(--primary); font-weight: 700; text-decoration: none; border-bottom: 2px solid transparent; transition: border-color 0.3s ease;">
+                            Get Involved &rarr;
+                        </a>
+                    </div>
+                </article>
+            {% empty %}
+                <div style="grid-column: 1 / -1; text-align: center; background: white; padding: 4rem; border-radius: var(--radius-md);">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-muted); margin-bottom: 1rem;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <h3>We're Planning Something New</h3>
+                    <p>Our upcoming programs will be listed here soon.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

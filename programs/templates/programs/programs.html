@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Programs | Parivarthan NGO{% endblock %}
+
+{% block content %}
+    <div style="margin-bottom: 2rem;">
+        <h1 style="font-size: 2.5rem; color: #34495e;">Our Programs</h1>
+        <p style="color: #7f8c8d; font-size: 1.1rem;">Discover how we are bringing change to our community.</p>
+    </div>
+
+    {% for program in programs %}
+        <article class="card" style="border-left: 4px solid #3498db;">
+            <h2 class="card-title" style="color: #2980b9;">{{ program.name }}</h2>
+            <div class="card-meta">
+                <strong>Location:</strong> {{ program.location }} 
+                {% if program.start_date %}
+                    | <strong>Starts:</strong> {{ program.start_date|date:"F d, Y" }}
+                {% endif %}
+            </div>
+            <p class="card-text">{{ program.description }}</p>
+        </article>
+    {% empty %}
+        <p style="text-align: center; color: #7f8c8d; padding: 3rem;">We are currently planning new programs. Please check back later.</p>
+    {% endfor %}
+{% endblock %}

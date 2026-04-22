@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Parivarthan Foundation - Empowering Communities">
+    <title>{% block title %}Parivarthan NGO{% endblock %}</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="nav-brand">Parivarthan.</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="#">Programs</a>
+            <a href="#">Donate</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Main Content Injection -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; {% now "Y" %} Parivarthan Foundation. All rights reserved.</p>
+    </footer>
+</body>
+</html>

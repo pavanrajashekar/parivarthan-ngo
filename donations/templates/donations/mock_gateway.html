@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Mock Razorpay Gateway | Parivarthan NGO{% endblock %}
+
+{% block content %}
+    <div style="max-width: 500px; margin: 4rem auto; background: white; padding: 3rem; border-radius: 12px; border-top: 5px solid #3498db; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); text-align: center;">
+        
+        <h2 style="color: #2c3e50; margin-bottom: 1rem;">MOCK PAYMENT GATEWAY</h2>
+        <p style="color: #7f8c8d; margin-bottom: 2rem;">In production, this page would be the actual Razorpay Checkout window.</p>
+        
+        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; text-align: left;">
+            <p><strong>Payment ID:</strong> {{ donation.payment_id }}</p>
+            <p><strong>Donor:</strong> {{ donation.donor_name }}</p>
+            <h3 style="margin-top: 1rem; color: #2ecc71;">Amount to Pay: ₹{{ donation.amount }}</h3>
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" style="width: 100%; background: #3498db; color: white; border: none; padding: 1rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer;">
+                Simulate Successful Payment
+            </button>
+        </form>
+        
+        <a href="{% url 'initiate-donation' %}" style="display: block; margin-top: 1rem; color: #95a5a6; text-decoration: none;">Cancel Payment</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Donate | Parivarthan NGO{% endblock %}
+
+{% block content %}
+    <div style="max-width: 500px; margin: 0 auto; background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); text-align: center;">
+        <h1 style="font-size: 2.2rem; color: #27ae60; margin-bottom: 0.5rem;">Support Our Cause</h1>
+        <p style="color: #7f8c8d; margin-bottom: 2rem;">Every single Rupee helps us provide free education and healthcare to the community.</p>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div style="background-color: #d4edda; color: #155724; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST" style="text-align: left;">
+            {% csrf_token %}
+            
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Your Name</label>
+                {{ form.donor_name }}
+            </div>
+            
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email Address</label>
+                {{ form.donor_email }}
+            </div>
+            
+            <div style="margin-bottom: 2rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Amount (INR ₹)</label>
+                {{ form.amount }}
+            </div>
+
+            <button type="submit" style="width: 100%; background: #2ecc71; color: white; border: none; padding: 1rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer;">
+                Proceed to Payment
+            </button>
+        </form>
+    </div>
+    
+    <style>
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .form-control:focus { outline: none; border-color: #2ecc71; }
+    </style>
+{% endblock %}

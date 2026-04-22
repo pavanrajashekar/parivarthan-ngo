@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -125,3 +126,26 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
+
+# Jazzmin Configuration
+JAZZMIN_SETTINGS = {
+    "site_title": "Parivarthan Admin",
+    "site_header": "Parivarthan",
+    "site_brand": "Parivarthan Dashboard",
+    "welcome_sign": "Welcome to the Parivarthan NGO Admin",
+    "copyright": "Parivarthan Foundation",
+    "search_model": ["donations.Donation", "blog.Blog"],
+    "show_ui_builder": False,
+    "topmenu_links": [
+        {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "Live Site", "url": "/", "new_window": True},
+    ],
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "navbar": "navbar-white navbar-light",
+    "theme": "lumen",
+    "sidebar": "sidebar-dark-primary",
+    "sidebar_nav_child_indent": True,
+    "accent": "accent-primary",
+}

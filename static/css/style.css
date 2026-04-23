@@ -168,15 +168,44 @@ main {
     overflow: hidden;
 }
 
-/* Footer */
-footer {
-    background: var(--secondary);
-    color: white;
-    text-align: center;
-    padding: 4rem 5%;
-    margin-top: 4rem;
+/* Mega Footer Fix */
+.mega-footer {
+    text-align: left; /* Ensuring explicit left alignment */
 }
 
-footer p {
-    color: rgba(255,255,255,0.6);
+/* Responsive Overrides */
+@media (max-width: 768px) {
+    /* Top Bar Mobile */
+    .top-bar-mobile {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+    .top-bar-mobile > div {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem !important;
+    }
+    
+    /* Navbar Mobile */
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    /* General Grid Mobile */
+    section {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
 }

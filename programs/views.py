@@ -1,8 +1,4 @@
-from django.shortcuts import render
-from .models import Program
+from django.shortcuts import redirect
 
 def programs_list(request):
-    context = {
-        'programs': Program.objects.all()
-    }
-    return render(request, 'programs/programs.html', context)
+    return redirect('/#programs')

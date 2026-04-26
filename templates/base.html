@@ -1,118 +1,323 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Parivarthan Foundation - Empowering Communities">
-    <title>{% block title %}Parivarthan NGO{% endblock %}</title>
-    
-    <!-- Google Fonts: Inter & Outfit -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Parivarthan IRPWS — Empowering Lives Through Care & Education{% endblock %}</title>
+  <meta name="description" content="Parivarthan IRPWS is a non-profit in Eluru, Andhra Pradesh giving hearing-impaired children a voice through education, therapy & rehabilitation. Donate today." />
+  <meta name="author" content="Parivarthan IRPWS" />
+  <meta property="og:title" content="Parivarthan — Every Child Deserves a Voice" />
+  <meta property="og:description" content="Education, therapy & rehabilitation for hearing-impaired children in rural Andhra Pradesh. Stand with us." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <script>
+    // Tailwind config — mirrors tailwind.config.ts
+    tailwind.config = {
+      theme: {
+        container: { center: true, padding: "2rem", screens: { "2xl": "1400px" } },
+        extend: {
+          colors: {
+            border: "hsl(var(--border))",
+            input: "hsl(var(--input))",
+            ring: "hsl(var(--ring))",
+            background: "hsl(var(--background))",
+            foreground: "hsl(var(--foreground))",
+            primary: {
+              DEFAULT: "hsl(var(--primary))",
+              foreground: "hsl(var(--primary-foreground))",
+            },
+            secondary: {
+              DEFAULT: "hsl(var(--secondary))",
+              foreground: "hsl(var(--secondary-foreground))",
+            },
+            muted: {
+              DEFAULT: "hsl(var(--muted))",
+              foreground: "hsl(var(--muted-foreground))",
+            },
+            accent: {
+              DEFAULT: "hsl(var(--accent))",
+              foreground: "hsl(var(--accent-foreground))",
+            },
+            card: {
+              DEFAULT: "hsl(var(--card))",
+              foreground: "hsl(var(--card-foreground))",
+            },
+          },
+          fontFamily: {
+            serif: ['Fraunces', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          borderRadius: { lg: "var(--radius)", md: "calc(var(--radius) - 2px)", sm: "calc(var(--radius) - 4px)" },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* ===== Design tokens (mirrors src/index.css) ===== */
+    :root {
+      --background: 36 33% 97%;
+      --foreground: 20 25% 14%;
+      --card: 0 0% 100%;
+      --card-foreground: 20 25% 14%;
+      --primary: 14 72% 48%;
+      --primary-foreground: 36 33% 97%;
+      --primary-glow: 18 85% 62%;
+      --secondary: 18 38% 22%;
+      --secondary-foreground: 36 33% 97%;
+      --accent: 36 70% 55%;
+      --accent-foreground: 20 25% 14%;
+      --muted: 32 25% 92%;
+      --muted-foreground: 20 12% 40%;
+      --border: 30 22% 88%;
+      --input: 30 22% 88%;
+      --ring: 14 72% 48%;
+      --radius: 1rem;
+
+      --gradient-warm: linear-gradient(135deg, hsl(14 72% 48%) 0%, hsl(28 80% 58%) 100%);
+      --gradient-sunrise: linear-gradient(180deg, hsl(36 60% 96%) 0%, hsl(32 40% 92%) 100%);
+
+      --shadow-warm: 0 20px 60px -20px hsl(14 72% 48% / 0.25);
+      --shadow-soft: 0 10px 40px -15px hsl(20 30% 12% / 0.15);
+      --shadow-card: 0 2px 20px -8px hsl(20 30% 12% / 0.08);
+
+      --transition-smooth: cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      font-feature-settings: 'ss01', 'ss02';
+    }
+    h1, h2, h3, h4, h5 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-optical-sizing: auto;
+      letter-spacing: -0.02em;
+    }
+
+    .font-serif { font-family: 'Fraunces', Georgia, serif; }
+    .text-balance { text-wrap: balance; }
+    .text-pretty { text-wrap: pretty; }
+    .bg-gradient-warm { background: var(--gradient-warm); }
+    .bg-gradient-sunrise { background: var(--gradient-sunrise); }
+    .shadow-warm { box-shadow: var(--shadow-warm); }
+    .shadow-soft { box-shadow: var(--shadow-soft); }
+    .shadow-card { box-shadow: var(--shadow-card); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: reveal 0.9s var(--transition-smooth) forwards;
+    }
+    .reveal-delay-1 { animation-delay: 0.1s; }
+    .reveal-delay-2 { animation-delay: 0.25s; }
+    .reveal-delay-3 { animation-delay: 0.4s; }
+    .reveal-delay-4 { animation-delay: 0.55s; }
+
+    @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .animate-pulse-dot { animation: pulse-dot 2s cubic-bezier(0.4,0,0.6,1) infinite; }
+
+    /* Toast */
+    #toast-stack {
+      position: fixed; top: 24px; right: 24px; z-index: 10000;
+      display: flex; flex-direction: column; gap: 10px;
+      pointer-events: none;
+    }
+    .toast {
+      pointer-events: auto;
+      background: hsl(var(--card));
+      color: hsl(var(--foreground));
+      border: 1px solid hsl(var(--border));
+      box-shadow: var(--shadow-soft);
+      border-radius: 14px;
+      padding: 14px 18px;
+      max-width: 360px;
+      font-size: 14px;
+      animation: reveal .4s var(--transition-smooth) forwards;
+    }
+    .toast.error { border-color: hsl(0 70% 60% / .4); }
+    .toast .t-title { font-weight: 600; margin-bottom: 2px; }
+    .toast .t-desc { font-size: 12px; color: hsl(var(--muted-foreground)); }
+
+    [data-icon] { display: inline-flex; }
+    [data-icon] svg { width: 1em; height: 1em; }
+  </style>
 </head>
+
 <body>
-    <!-- Top Bar (Aasha Style) -->
-    <div class="top-bar-mobile" style="background: var(--card-bg); padding: 0.5rem 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 0.85rem; color: var(--secondary);">
-        <div style="display: flex; gap: 1.5rem;">
-            <span style="display: flex; align-items: center; gap: 0.5rem;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                +91 999 999 9999
-            </span>
-            <span style="display: flex; align-items: center; gap: 0.5rem;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                info@parivarthanirpws.org
-            </span>
-        </div>
-        <div style="display: flex; gap: 1rem;">
-            <!-- Social Placeholder -->
-            <a href="#" style="color: var(--primary);">Facebook</a>
-            <a href="#" style="color: var(--primary);">Twitter</a>
-        </div>
+
+<!-- ========== NAVBAR ========== -->
+<header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-all duration-500 bg-transparent py-5">
+  <nav class="container flex items-center justify-between">
+    <a href="/#top" class="flex items-center gap-2 group">
+      <div class="h-9 w-9 rounded-full bg-gradient-warm grid place-items-center shadow-warm">
+        <i data-lucide="heart" class="h-4 w-4 text-primary-foreground fill-current"></i>
+      </div>
+      <div class="leading-tight">
+        <div class="font-serif text-lg font-semibold text-foreground">Parivarthan</div>
+        <div class="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">IRPWS · Eluru</div>
+      </div>
+    </a>
+
+    <div class="hidden md:flex items-center gap-8">
+      <a href="/#about" class="text-sm text-foreground/70 hover:text-primary transition-colors relative group">About<span class="absolute -bottom-1 left-0 h-px w-0 bg-primary transition-all group-hover:w-full"></span></a>
+      <a href="/#programs" class="text-sm text-foreground/70 hover:text-primary transition-colors relative group">Programs<span class="absolute -bottom-1 left-0 h-px w-0 bg-primary transition-all group-hover:w-full"></span></a>
+      <a href="/#impact" class="text-sm text-foreground/70 hover:text-primary transition-colors relative group">Impact<span class="absolute -bottom-1 left-0 h-px w-0 bg-primary transition-all group-hover:w-full"></span></a>
+      <a href="/#support" class="text-sm text-foreground/70 hover:text-primary transition-colors relative group">Why Support<span class="absolute -bottom-1 left-0 h-px w-0 bg-primary transition-all group-hover:w-full"></span></a>
+      <a href="/#contact" class="text-sm text-foreground/70 hover:text-primary transition-colors relative group">Contact<span class="absolute -bottom-1 left-0 h-px w-0 bg-primary transition-all group-hover:w-full"></span></a>
     </div>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <a href="/" class="nav-brand">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"></path></svg>
-            Parivarthan.
-        </a>
-        <div class="nav-links">
-            <a href="/#hero">Home</a>
-            <a href="/#programs">Programs</a>
-            <a href="/#contact">Contact</a>
-            <a href="{% url 'initiate-donation' %}" class="btn-primary">Donate Now</a>
+    <div class="hidden md:block">
+      <a href="/#donate" class="inline-flex items-center justify-center text-sm font-medium rounded-full bg-gradient-warm shadow-warm text-primary-foreground h-9 px-5 hover:opacity-95 transition">Donate</a>
+    </div>
+
+    <button id="menu-toggle" class="md:hidden p-2 -mr-2 text-foreground" aria-label="Toggle menu">
+      <i data-lucide="menu" id="menu-icon" class="h-5 w-5"></i>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-border/60 bg-background/95 backdrop-blur-lg">
+    <div class="container py-6 flex flex-col gap-4">
+      <a href="/#about" class="mobile-link text-base text-foreground/80 hover:text-primary">About</a>
+      <a href="/#programs" class="mobile-link text-base text-foreground/80 hover:text-primary">Programs</a>
+      <a href="/#impact" class="mobile-link text-base text-foreground/80 hover:text-primary">Impact</a>
+      <a href="/#support" class="mobile-link text-base text-foreground/80 hover:text-primary">Why Support</a>
+      <a href="/#contact" class="mobile-link text-base text-foreground/80 hover:text-primary">Contact</a>
+      <a href="/#donate" class="mobile-link inline-flex items-center justify-center text-sm font-medium rounded-full bg-gradient-warm text-primary-foreground h-11 mt-2">Donate</a>
+    </div>
+  </div>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="bg-secondary text-secondary-foreground pt-20 pb-10">
+  <div class="container">
+    <div class="grid md:grid-cols-12 gap-10 mb-16">
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="h-9 w-9 rounded-full bg-gradient-warm grid place-items-center">
+            <i data-lucide="heart" class="h-4 w-4 text-primary-foreground fill-current"></i>
+          </div>
+          <div class="leading-tight">
+            <div class="font-serif text-lg">Parivarthan</div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-secondary-foreground/60">IRPWS · Eluru</div>
+          </div>
         </div>
-    </nav>
-
-    <!-- Main Content Injection -->
-    <main>
-        {% block content %}{% endblock %}
-    </main>
-
-    <!-- Mega Footer (Aasha Style) -->
-    <footer class="mega-footer" style="background: #1a252f; color: rgba(255,255,255,0.7); padding: 5rem 5% 2rem 5%; font-size: 0.95rem; margin-top: 5rem;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 4rem; margin-bottom: 2rem;">
-            
-            <!-- Col 1: About -->
-            <div>
-                <a href="/" style="color: white; font-size: 1.5rem; font-weight: 800; font-family: 'Outfit', sans-serif; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"></path></svg>
-                    Parivarthan.
-                </a>
-                <p style="margin-bottom: 1.5rem; line-height: 1.6;">Empowering hearing-impaired children through specialized education and an inclusive barrier-free environment in Eluru.</p>
-                <div style="display: flex; gap: 1rem;">
-                    <div style="background: rgba(255,255,255,0.1); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white;">f</div>
-                    <div style="background: rgba(255,255,255,0.1); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white;">t</div>
-                    <div style="background: rgba(255,255,255,0.1); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white;">in</div>
-                </div>
-            </div>
-
-            <!-- Col 2: Quick Links -->
-            <div>
-                <h4 style="color: white; font-family: 'Outfit', sans-serif; margin-bottom: 1.5rem;">Quick Links</h4>
-                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.8rem;">
-                    <li><a href="/#hero" style="color: rgba(255,255,255,0.7); text-decoration: none;">&rarr; Home</a></li>
-                    <li><a href="/#programs" style="color: rgba(255,255,255,0.7); text-decoration: none;">&rarr; Our Programs</a></li>
-                    <li><a href="{% url 'initiate-donation' %}" style="color: rgba(255,255,255,0.7); text-decoration: none;">&rarr; Donate Now</a></li>
-                    <li><a href="/#contact" style="color: rgba(255,255,255,0.7); text-decoration: none;">&rarr; Contact Us</a></li>
-                </ul>
-            </div>
-
-            <!-- Col 3: Legal & Resources (The Missing Pieces) -->
-            <div>
-                <h4 style="color: white; font-family: 'Outfit', sans-serif; margin-bottom: 1.5rem;">Policies & Resources</h4>
-                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.8rem;">
-                    <li><a href="https://drive.google.com/file/d/1yxpGIQpqvj3J-vZULpB9WqWhTSi5-1sz/view" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none;">&rarr; Terms & Conditions</a></li>
-                    <li><a href="https://drive.google.com/file/d/1OmwsUFj09qtBdNCcecpe8VfvlIC77ohQ/view" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none;">&rarr; Privacy Policy</a></li>
-                    <li><a href="https://drive.google.com/file/d/1iekXxntLkBZdvZ5gfIZu3iDGQ0E0Lgte/view" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none;">&rarr; Refund & Cancellation</a></li>
-                    <li><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none;">&rarr; Downloads / Reports</a></li>
-                </ul>
-            </div>
-
-            <!-- Col 4: Contact Meta -->
-            <div>
-                <h4 style="color: white; font-family: 'Outfit', sans-serif; margin-bottom: 1.5rem;">Get In Touch</h4>
-                <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" style="flex-shrink: 0;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                    <span>+91 999 999 9999</span>
-                </div>
-                <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" style="flex-shrink: 0;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    <span>info@parivarthanirpws.org</span>
-                </div>
-                <div style="display: flex; gap: 1rem;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" style="flex-shrink: 0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                    <span>Sri Nagar, 2nd line, Sanivarapupeta, Dondapadu, Eluru-534003, Andhra Pradesh</span>
-                </div>
-            </div>
-            
+        <p class="text-secondary-foreground/70 leading-relaxed max-w-sm text-sm">
+          Empowering hearing-impaired children, families, and elders across rural Andhra Pradesh
+          through education, therapy, and community care.
+        </p>
+        <div class="flex gap-3 mt-8">
+          <a href="#" class="h-10 w-10 rounded-full border border-secondary-foreground/20 grid place-items-center hover:bg-primary hover:border-primary transition-colors" aria-label="Facebook"><i data-lucide="facebook" class="h-4 w-4"></i></a>
+          <a href="#" class="h-10 w-10 rounded-full border border-secondary-foreground/20 grid place-items-center hover:bg-primary hover:border-primary transition-colors" aria-label="Instagram"><i data-lucide="instagram" class="h-4 w-4"></i></a>
+          <a href="#" class="h-10 w-10 rounded-full border border-secondary-foreground/20 grid place-items-center hover:bg-primary hover:border-primary transition-colors" aria-label="Twitter"><i data-lucide="twitter" class="h-4 w-4"></i></a>
+          <a href="#" class="h-10 w-10 rounded-full border border-secondary-foreground/20 grid place-items-center hover:bg-primary hover:border-primary transition-colors" aria-label="YouTube"><i data-lucide="youtube" class="h-4 w-4"></i></a>
         </div>
-        <div style="text-align: center; max-width: 1200px; margin: 0 auto; color: rgba(255,255,255,0.4);">
-            &copy; {% now "Y" %} Parivarthan Foundation. All rights reserved. | Website engineered with Django.
-        </div>
-    </footer>
+      </div>
+
+      <div class="md:col-span-3">
+        <div class="text-[10px] uppercase tracking-[0.25em] text-secondary-foreground/50 mb-5">Explore</div>
+        <ul class="space-y-3 text-sm">
+          <li><a href="/#about" class="text-secondary-foreground/80 hover:text-accent transition-colors">About</a></li>
+          <li><a href="/#programs" class="text-secondary-foreground/80 hover:text-accent transition-colors">Programs</a></li>
+          <li><a href="/#impact" class="text-secondary-foreground/80 hover:text-accent transition-colors">Impact</a></li>
+          <li><a href="/#donate" class="text-secondary-foreground/80 hover:text-accent transition-colors">Donate</a></li>
+          <li><a href="/#contact" class="text-secondary-foreground/80 hover:text-accent transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-4">
+        <div class="text-[10px] uppercase tracking-[0.25em] text-secondary-foreground/50 mb-5">Visit us</div>
+        <p class="text-sm text-secondary-foreground/80 leading-relaxed">
+          Eluru, West Godavari District<br />
+          Andhra Pradesh, India<br />
+          <a href="mailto:contact@parivarthanirpws.org" class="text-accent hover:underline">contact@parivarthanirpws.org</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="pt-8 border-t border-secondary-foreground/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-secondary-foreground/50">
+      <div>© <span id="year"></span> Parivarthan IRPWS. All rights reserved.</div>
+      <div class="flex items-center gap-1.5">
+        Made with <i data-lucide="heart" class="h-3 w-3 fill-current text-primary"></i> for the children of Eluru.
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast-stack"></div>
+
+<!-- ========== GLOBAL SCRIPTS ========== -->
+<script>
+  // ===== Toasts =====
+  function toast({ title, desc, type = "success" }) {
+    const stack = document.getElementById("toast-stack");
+    const el = document.createElement("div");
+    el.className = "toast " + (type === "error" ? "error" : "");
+    el.innerHTML = `<div class="t-title">${title}</div>${desc ? `<div class="t-desc">${desc}</div>` : ""}`;
+    stack.appendChild(el);
+    setTimeout(() => { el.style.opacity = "0"; el.style.transform = "translateY(-8px)"; el.style.transition = "all .35s"; }, 4200);
+    setTimeout(() => el.remove(), 4700);
+  }
+
+  // ===== Navbar scroll style =====
+  const header = document.getElementById("site-header");
+  function onScroll() {
+    if (window.scrollY > 24) {
+      header.className = "fixed top-0 inset-x-0 z-50 transition-all duration-500 bg-background/85 backdrop-blur-lg border-b border-border/60 py-3";
+    } else {
+      header.className = "fixed top-0 inset-x-0 z-50 transition-all duration-500 bg-transparent py-5";
+    }
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // ===== Mobile menu =====
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuIcon = document.getElementById("menu-icon");
+  if(menuToggle) {
+      let menuOpen = false;
+      menuToggle.addEventListener("click", () => {
+        menuOpen = !menuOpen;
+        mobileMenu.classList.toggle("hidden", !menuOpen);
+        menuIcon.setAttribute("data-lucide", menuOpen ? "x" : "menu");
+        lucide.createIcons();
+      });
+      document.querySelectorAll(".mobile-link").forEach(a => a.addEventListener("click", () => {
+        menuOpen = false;
+        mobileMenu.classList.add("hidden");
+        if(menuIcon) menuIcon.setAttribute("data-lucide", "menu");
+        lucide.createIcons();
+      }));
+  }
+
+  // ===== Year =====
+  const yearEl = document.getElementById("year");
+  if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
+  }
+
+  // ===== Init lucide icons =====
+  lucide.createIcons();
+</script>
+
+{% block extra_scripts %}{% endblock %}
+
 </body>
 </html>

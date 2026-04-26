@@ -3,135 +3,104 @@
 {% block title %}Target Your Impact | Parivarthan NGO{% endblock %}
 
 {% block content %}
-    <!-- Mega Hero Section -->
-    <section style="background: linear-gradient(rgba(13, 17, 23, 0.8), rgba(13, 17, 23, 0.95)), url('https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center; color: white; padding: 6rem 5%; text-align: center;">
-        <div style="max-width: 800px; margin: 0 auto;">
-            <p style="color: var(--primary); font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">Parivarthan Foundation</p>
-            <h1 style="color: white; margin-bottom: 2rem; font-size: clamp(3rem, 5vw, 4rem);">Be the reason a child is heard.</h1>
-            <p style="font-size: 1.3rem; color: rgba(255,255,255,0.8); margin-bottom: 3rem;">We are on a mission to build a barrier-free educational environment in Eluru. Your immediate action helps provide vital speech therapy and specialized learning kits.</p>
-            
-            <!-- Dummy Progress Bar -->
-            <div style="background: rgba(255,255,255,0.1); border-radius: 50px; height: 12px; margin-bottom: 1rem; overflow: hidden; max-width: 600px; margin: 0 auto 1rem auto; box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);">
-                <div style="background: var(--accent); width: 85%; height: 100%; border-radius: 50px; box-shadow: 0 0 10px rgba(39, 174, 96, 0.8);"></div>
-            </div>
-            <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; font-weight: 600; text-transform: uppercase;">Rehabilitation Fund: 85% Funded</p>
-        </div>
-    </section>
+<section class="py-24 md:py-36 bg-gradient-sunrise min-h-[80svh] flex items-center">
+  <div class="container">
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <div class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 backdrop-blur px-4 py-1.5 mb-6">
+        <i data-lucide="sparkles" class="h-3.5 w-3.5 text-primary"></i>
+        <span class="text-xs uppercase tracking-[0.2em] text-primary">Final Step</span>
+      </div>
+      <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.05] text-balance">
+        Complete your contribution.
+      </h1>
+      <p class="mt-6 text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
+        100% of your donation directly funds our rural supply chain programs. You are seconds away from making an impact.
+      </p>
+    </div>
 
-    <!-- Sponsorship Plans Layout -->
-    <section class="container section-padding">
-        <div style="text-align: center; margin-bottom: 4rem;">
-            <h2>Target Your Impact</h2>
-            <p style="color: var(--text-muted); font-size: 1.1rem;">Select exactly where you want your funds to go.</p>
+    <div class="max-w-5xl mx-auto grid lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Side: Transparency FAQ -->
+      <div class="lg:col-span-5 space-y-6">
+        <div class="bg-card rounded-[2rem] p-8 shadow-card border border-border">
+          <h3 class="font-serif text-2xl mb-6">Transparency Guarantee</h3>
+          
+          <div class="space-y-6">
+            <div class="flex gap-4">
+              <div class="h-10 w-10 rounded-2xl bg-secondary/10 text-secondary grid place-items-center flex-shrink-0">
+                <i data-lucide="pie-chart" class="h-5 w-5"></i>
+              </div>
+              <div>
+                <strong class="block text-foreground mb-1">Where does the money go?</strong>
+                <p class="text-sm text-muted-foreground leading-relaxed">95% of everything we raise goes directly into supply chain programs. 5% covers the essential web and logistics overhead.</p>
+              </div>
+            </div>
+            
+            <div class="flex gap-4">
+              <div class="h-10 w-10 rounded-2xl bg-primary/10 text-primary grid place-items-center flex-shrink-0">
+                <i data-lucide="shield-check" class="h-5 w-5"></i>
+              </div>
+              <div>
+                <strong class="block text-foreground mb-1">Is my payment secure?</strong>
+                <p class="text-sm text-muted-foreground leading-relaxed">Yes. We use industry-standard encryption. We do not store any of your credit card details on our servers.</p>
+              </div>
+            </div>
+          </div>
         </div>
-        
-        <div class="card-grid" style="margin-bottom: 5rem;">
-            {% for plan in plans %}
-                <a href="?amount={{ plan.amount }}#checkout" class="card" style="text-decoration: none; text-align: center; display: block; border-top: 4px solid var(--accent);">
-                    <h3 style="color: var(--secondary); margin-bottom: 0.5rem;">{{ plan.title }}</h3>
-                    <p style="color: var(--text-muted); min-height: 50px; margin-bottom: 1.5rem;">{{ plan.description }}</p>
-                    <span style="background: rgba(39, 174, 96, 0.1); color: var(--accent); padding: 0.8rem 2rem; border-radius: 50px; font-weight: 800; font-size: 1.2rem; display: inline-block;">
-                        Donate ₹{{ plan.amount }}
-                    </span>
-                </a>
-            {% empty %}
-                 <p style="text-align: center; grid-column: 1/-1;">No targeted plans available right now.</p>
+
+        <!-- Extra Testimony -->
+        <div class="bg-primary/5 rounded-[2rem] p-8 border border-primary/20">
+            <p class="text-primary-foreground text-sm font-serif italic text-primary mb-4 leading-relaxed">"The transparency here is unmatched. You know exactly which program you are funding."</p>
+            <strong class="text-xs uppercase tracking-wider text-primary">— Vikram T., Corporate Sponsor</strong>
+        </div>
+      </div>
+
+      <!-- Right Side: Checkout Form -->
+      <div class="lg:col-span-7 bg-card rounded-[2rem] p-8 md:p-10 shadow-warm border border-border">
+        <h3 class="font-serif text-3xl mb-8">Secure Checkout</h3>
+
+        {% if messages %}
+            <div class="mb-6 space-y-3">
+            {% for message in messages %}
+                <div class="flex items-center gap-3 p-4 rounded-xl bg-accent/10 border border-accent/20 text-accent-foreground text-sm">
+                    <i data-lucide="check-circle" class="h-5 w-5 text-accent flex-shrink-0"></i>
+                    {{ message }}
+                </div>
             {% endfor %}
-        </div>
+            </div>
+        {% endif %}
 
-        <!-- The Checkout & FAQ Pane -->
-        <div id="checkout" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 4rem; background: var(--card-bg); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); overflow: hidden; margin-bottom: 5rem; scroll-margin-top: 100px;">
+        <form method="POST" class="space-y-6">
+            {% csrf_token %}
             
-            <!-- Left Side: Transparency FAQ -->
-            <div style="background: var(--secondary); padding: 4rem; color: white;">
-                <h3 style="color: white; margin-bottom: 2rem;">Transparency Guarantee</h3>
-                
-                <div style="margin-bottom: 2rem;">
-                    <div style="display: flex; gap: 1rem; margin-bottom: 0.5rem;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                        <strong style="font-size: 1.1rem;">Where does the money go?</strong>
-                    </div>
-                    <p style="color: rgba(255,255,255,0.7); margin-left: 2.5rem;">95% of everything we raise goes directly into supply chain programs. 5% covers the essential web and logistics overhead.</p>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">Full Name</label>
+                    <input type="text" name="donor_name" required class="w-full h-14 px-5 rounded-2xl border border-border bg-background focus:ring-2 focus:ring-primary outline-none transition-all text-base" placeholder="Jane Doe">
                 </div>
                 
-                <div style="margin-bottom: 2rem;">
-                    <div style="display: flex; gap: 1rem; margin-bottom: 0.5rem;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                        <strong style="font-size: 1.1rem;">Is my payment secure?</strong>
+                <div>
+                    <label class="block text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">Email Address</label>
+                    <input type="email" name="donor_email" required class="w-full h-14 px-5 rounded-2xl border border-border bg-background focus:ring-2 focus:ring-primary outline-none transition-all text-base" placeholder="jane@example.com">
+                </div>
+                
+                <div class="relative pt-2">
+                    <label class="block text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">Donation Amount (INR)</label>
+                    <div class="relative">
+                        <span class="absolute left-5 top-1/2 -translate-y-1/2 text-muted-foreground font-serif text-lg">₹</span>
+                        <input type="number" name="amount" value="{{ form.amount.value|default_if_none:'' }}" required class="w-full h-16 pl-12 pr-5 rounded-2xl border-2 border-primary/20 bg-primary/5 focus:ring-0 focus:border-primary outline-none transition-all text-xl font-semibold font-serif text-foreground">
                     </div>
-                    <p style="color: rgba(255,255,255,0.7); margin-left: 2.5rem;">Yes. We use industry-standard Razorpay encryption. We do not store any of your credit card details on our servers.</p>
                 </div>
             </div>
 
-            <!-- Right Side: Clean Form -->
-            <div style="padding: 4rem 4rem 4rem 0;">
-                <h3 style="color: var(--secondary); margin-bottom: 0.5rem; font-size: 2rem;">Secure Checkout</h3>
+            <button type="submit" class="w-full inline-flex items-center justify-center gap-2 h-16 px-8 rounded-2xl bg-gradient-warm text-primary-foreground shadow-warm hover:scale-[1.02] transition-transform font-medium text-lg mt-4">
+                Proceed to Secure Payment <i data-lucide="arrow-right" class="h-5 w-5"></i>
+            </button>
+            <p class="text-center text-xs text-muted-foreground mt-4">By continuing, you agree to our Terms of Service & Privacy Policy.</p>
+        </form>
+      </div>
 
-                {% if messages %}
-                    {% for message in messages %}
-                        <div style="background-color: #d4edda; color: #155724; padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem; border: 1px solid #c3e6cb;">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 0.5rem;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-
-                <form method="POST">
-                    {% csrf_token %}
-                    
-                    <div style="margin-bottom: 1.5rem;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--secondary); font-size: 0.95rem;">Full Name</label>
-                        {{ form.donor_name }}
-                    </div>
-                    
-                    <div style="margin-bottom: 1.5rem;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--secondary); font-size: 0.95rem;">Email Address</label>
-                        {{ form.donor_email }}
-                    </div>
-                    
-                    <div style="margin-bottom: 2.5rem;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--secondary); font-size: 0.95rem;">Donation Amount (INR)</label>
-                        <div style="position: relative;">
-                            <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-weight: 600; color: var(--text-muted);">₹</span>
-                            {{ form.amount }}
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn-primary" style="width: 100%; border-radius: var(--radius-sm);">
-                        Proceed to Secure Checkout
-                    </button>
-                    <p style="text-align: center; margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">By donating, you agree to our Terms of Service.</p>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mega Page Testimonials -->
-    <section style="background: #ecf0f1; padding: 5rem 0;">
-        <div class="container" style="text-align: center;">
-            <p style="text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--primary);">Impact Stories</p>
-            <h2 style="margin-bottom: 4rem;">The Ripple Effect of Giving</h2>
-            
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 3rem;">
-                <div style="max-width: 400px; text-align: left; background: white; padding: 2rem; border-radius: var(--radius-md);">
-                    <p style="font-size: 1.1rem; font-style: italic; color: var(--secondary); margin-bottom: 1rem;">"Donating through this portal was the easiest thing I've ever done. I received a tracking report of what my ₹2000 funded within a week!"</p>
-                    <strong style="color: var(--secondary); display: block;">— Anjali S.</strong>
-                    <small style="color: var(--text-muted);">Regular Donor</small>
-                </div>
-                <div style="max-width: 400px; text-align: left; background: white; padding: 2rem; border-radius: var(--radius-md);">
-                    <p style="font-size: 1.1rem; font-style: italic; color: var(--secondary); margin-bottom: 1rem;">"The transparency here is unmatched. You know exactly which program you are funding and exactly how much is effectively mapped."</p>
-                    <strong style="color: var(--secondary); display: block;">— Vikram T.</strong>
-                    <small style="color: var(--text-muted);">Corporate Sponsor</small>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quick Inline Styling -->
-    <style>
-        .form-control { width: 100%; padding: 1rem 1rem; border: 2px solid transparent; background: #F4F7F6; border-radius: var(--radius-sm); font-size: 1rem; transition: all 0.3s ease; }
-        .form-control:focus { outline: none; border-color: var(--primary); background: white; }
-        input[name="amount"] { padding-left: 2.5rem !important; font-size: 1.2rem; font-weight: 700; }
-        @media (max-width: 768px) { #checkout > div:last-child { padding: 2rem; } }
-    </style>
+    </div>
+  </div>
+</section>
 {% endblock %}

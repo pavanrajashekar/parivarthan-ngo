@@ -317,9 +317,11 @@
 
 <!-- ========== CONTACT ========== -->
 <section id="contact" class="py-24 md:py-36 bg-gradient-sunrise">
-  <div class="container">
-    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
-      <div class="lg:col-span-5">
+  <div class="container space-y-12">
+    
+    <!-- Top Row: Info & Map -->
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
+      <div class="lg:col-span-5 flex flex-col justify-center">
         <div class="text-xs uppercase tracking-[0.25em] text-primary mb-6">— Visit · Call · Write</div>
         <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.05] text-balance mb-8">
           Come see the work. Tea is always on.
@@ -361,8 +363,8 @@
         </div>
       </div>
 
-      <div class="lg:col-span-7 flex flex-col gap-10">
-        <div class="relative h-[280px] md:h-[350px] rounded-[2rem] overflow-hidden shadow-soft bg-muted">
+      <div class="lg:col-span-7">
+        <div class="relative h-full min-h-[350px] lg:min-h-[480px] rounded-[2rem] overflow-hidden shadow-soft bg-muted">
           <iframe title="Parivarthan IRPWS Location"
                   src="https://www.google.com/maps?q=16.7272625,81.0850615&output=embed"
                   class="absolute inset-0 h-full w-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -371,36 +373,42 @@
             <div class="font-serif text-lg text-foreground">Eluru, Andhra Pradesh</div>
           </div>
         </div>
-
-        <div class="bg-card rounded-[2rem] p-8 shadow-card border border-border">
-          <h3 class="font-serif text-2xl mb-6">Send us a message</h3>
-          <form action="/contact/" method="POST" class="space-y-4">
-            {% csrf_token %}
-            <div class="grid grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">Name</label>
-                <input type="text" name="name" required class="w-full h-12 px-4 rounded-xl border border-border bg-background focus:ring-2 focus:ring-primary outline-none transition-all">
-              </div>
-              <div>
-                <label class="block text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">Email</label>
-                <input type="email" name="email" required class="w-full h-12 px-4 rounded-xl border border-border bg-background focus:ring-2 focus:ring-primary outline-none transition-all">
-              </div>
-            </div>
-            <div>
-              <label class="block text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">Subject</label>
-              <input type="text" name="subject" required class="w-full h-12 px-4 rounded-xl border border-border bg-background focus:ring-2 focus:ring-primary outline-none transition-all">
-            </div>
-            <div>
-              <label class="block text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">Message</label>
-              <textarea name="message" rows="4" required class="w-full p-4 rounded-xl border border-border bg-background focus:ring-2 focus:ring-primary outline-none transition-all resize-none"></textarea>
-            </div>
-            <button type="submit" class="inline-flex items-center justify-center gap-2 h-12 px-8 rounded-xl bg-gradient-warm text-primary-foreground shadow-warm hover:scale-[1.02] transition-transform font-medium w-full mt-2">
-              Send Message <i data-lucide="send" class="h-4 w-4"></i>
-            </button>
-          </form>
-        </div>
       </div>
     </div>
+
+    <!-- Bottom Row: Full Width Form -->
+    <div class="bg-card rounded-[2rem] p-8 md:p-12 shadow-card border border-border">
+      <div class="max-w-4xl mx-auto">
+        <h3 class="font-serif text-3xl mb-8 text-center text-balance">Send us a message</h3>
+        <form action="/contact/" method="POST" class="space-y-6">
+          {% csrf_token %}
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">Name</label>
+              <input type="text" name="name" required class="w-full h-14 px-5 rounded-2xl border border-border bg-background focus:ring-2 focus:ring-primary outline-none transition-all text-base" placeholder="Jane Doe">
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">Email</label>
+              <input type="email" name="email" required class="w-full h-14 px-5 rounded-2xl border border-border bg-background focus:ring-2 focus:ring-primary outline-none transition-all text-base" placeholder="jane@example.com">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">Subject</label>
+            <input type="text" name="subject" required class="w-full h-14 px-5 rounded-2xl border border-border bg-background focus:ring-2 focus:ring-primary outline-none transition-all text-base" placeholder="How can we help?">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">Message</label>
+            <textarea name="message" rows="5" required class="w-full p-5 rounded-2xl border border-border bg-background focus:ring-2 focus:ring-primary outline-none transition-all resize-none text-base" placeholder="Write your message here..."></textarea>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="inline-flex items-center justify-center gap-2 h-14 px-10 rounded-2xl bg-gradient-warm text-primary-foreground shadow-warm hover:scale-[1.02] transition-transform font-medium text-lg mt-2">
+              Send Message <i data-lucide="send" class="h-4 w-4"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
   </div>
 </section>
 {% endblock %}

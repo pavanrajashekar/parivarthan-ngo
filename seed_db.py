@@ -45,6 +45,17 @@ def seed():
             amount=10000
         )
 
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+    if not User.objects.filter(is_superuser=True).exists():
+        print("No superuser found. Creating default superuser...")
+        User.objects.create_superuser(
+            username=os.environ.get('DJANGO_SUPERUSER_USERNAME', 'admin'),
+            email=os.environ.get('DJANGO_SUPERUSER_EMAIL', 'admin@parivarthan.org'),
+            password=os.environ.get('DJANGO_SUPERUSER_PASSWORD', 'admin123')
+        )
+
+
 if __name__ == '__main__':
     seed()
     print("Database seeding verification complete.")

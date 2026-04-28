@@ -48,12 +48,19 @@ def seed():
     from django.contrib.auth import get_user_model
     User = get_user_model()
     if not User.objects.filter(is_superuser=True).exists():
-        print("No superuser found. Creating default superuser...")
-        User.objects.create_superuser(
-            username=os.environ.get('DJANGO_SUPERUSER_USERNAME', 'admin'),
-            email=os.environ.get('DJANGO_SUPERUSER_EMAIL', 'admin@parivarthan.org'),
-            password=os.environ.get('DJANGO_SUPERUSER_PASSWORD', 'admin123')
-        )
+        admin_user = os.environ.get('DJANGO_SUPERUSER_USERNAME')
+        admin_pass = os.environ.get('DJANGO_SUPERUSER_PASSWORD')
+        admin_email = os.environ.get('DJANGO_SUPERUSER_EMAIL', 'admin@parivarthan.org')
+        
+        if admin_user and admin_pass:
+            print(f"No superuser found. Creating default superuser '{admin_user}' from environment variables...")
+            User.objects.create_superuser(
+                username=admin_user,
+                email=admin_email,
+                password=admin_pass
+            )
+        else:
+            print("No superuser exists, and DJANGO_SUPERUSER_USERNAME / DJANGO_SUPERUSER_PASSWORD are not set in environment. Skipping superuser creation.")
 
 
 if __name__ == '__main__':
